@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+ OpenArena entity definition file for Gtk/NetRadiant
+ Based on the baseq3 entity definition included in GtkRadiant 1.5
+ Based on draft by Suicide 20 7.30.99 and inolen 9-3-99
+ Upgraded by Eutectic: eutectic@ritualistic.com
+ (visible models added by raYGunn - paths provided by Suicide 20)
+ (terrain information added to func_group entity by Paul Jaquays)
+ Q3Map2 entitys/keys added by ydnar
+ OpenArena entities/keys added and some color changed by sago007 (2009-01-14)
+ Version: 1.0 (based on Q3A 1.6)
+ Last updated: 2009-01-14
+-->
+<classes>
+<!--
+=============================================================================
+
+ Q3Map2 entities
+
+=============================================================================
+-->
+
+<point name="info_player_dom" color="1 1 0" box="-16 -16 -24 16 16 32">
+[entity_description]
+-------- KEYS --------
+<angle key="angle" name="Yaw Angle">[key_description]</angle>
+<target key="target" name="Target">[key_description]</target>
+<boolean key="nobots" name="No Bots">[key_description]</boolean>
+<boolean key="nohumans" name="No Humans">[key_description]</boolean>
+<boolean key="notsingle" name="Hidden For SP">[key_description]</boolean>
+-------- SPAWNFLAGS --------
+<flag key="INITIAL" name="Initial Spawn Point" bit="0">[key_description]</flag>
+</point>
+
+<point name="info_player_dom_red" color="1 0 1" box="-16 -16 -24 16 16 32">
+[entity_description]
+-------- KEYS --------
+<angle key="angle" name="Yaw Angle">[key_description]</angle>
+<target key="target" name="Target">[key_description]</target>
+<boolean key="nobots" name="No Bots">[key_description]</boolean>
+<boolean key="nohumans" name="No Humans">[key_description]</boolean>
+<boolean key="notsingle" name="Hidden For SP">[key_description]</boolean>
+-------- SPAWNFLAGS --------
+<flag key="INITIAL" name="Initial Spawn Point" bit="0">[key_description]</flag>
+</point>
+
+<point name="info_player_dom_blue" color="0 1 1" box="-16 -16 -24 16 16 32">
+[entity_description]
+-------- KEYS --------
+<angle key="angle" name="Yaw Angle">[key_description]</angle>
+<target key="target" name="Target">[key_description]</target>
+<boolean key="nobots" name="No Bots">[key_description]</boolean>
+<boolean key="nohumans" name="No Humans">[key_description]</boolean>
+<boolean key="notsingle" name="Hidden For SP">[key_description]</boolean>
+-------- SPAWNFLAGS --------
+<flag key="INITIAL" name="Initial Spawn Point" bit="0">[key_description]</flag>
+</point>
+
+</classes>

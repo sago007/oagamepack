@@ -781,30 +781,6 @@ Player spawn for Double Domination mode. Only for members of the blue team.
 <flag key="INITIAL" name="Initial Spawn Point" bit="0">makes the spawnpoint the initial place for the player to spawn at the beginning of the game.</flag>
 </point>
 
-<point name="info_player_dom_red" color="1 0 0.75" box="-16 -16 -24 16 16 32">
-Player spawn for Double Domination mode. Only for members of the red team.
--------- KEYS --------
-<angle key="angle" name="Yaw Angle">direction in which player will look when spawning in the game. Does not apply to bots.</angle>
-<target key="target" name="Target">this can point at a target_give entity for respawn freebies.</target>
-<boolean key="nobots" name="No Bots">when set to 1, bots will never use this spawn point to respawn in the game.</boolean>
-<boolean key="nohumans" name="No Humans">when set to 1, human players will never use this spawn point to respawn in the game.</boolean>
-<boolean key="notsingle" name="Hidden For SP">when set to 1, entity will not spawn in Single Player mode (bot play mode).</boolean>
--------- SPAWNFLAGS --------
-<flag key="INITIAL" name="Initial Spawn Point" bit="0">makes the spawnpoint the initial place for the player to spawn at the beginning of the game.</flag>
-</point>
-
-<point name="info_player_dom_blue" color="0 0.75 1" box="-16 -16 -24 16 16 32">
-Player spawn for Double Domination mode. Only for members of the blue team.
--------- KEYS --------
-<angle key="angle" name="Yaw Angle">direction in which player will look when spawning in the game. Does not apply to bots.</angle>
-<target key="target" name="Target">this can point at a target_give entity for respawn freebies.</target>
-<boolean key="nobots" name="No Bots">when set to 1, bots will never use this spawn point to respawn in the game.</boolean>
-<boolean key="nohumans" name="No Humans">when set to 1, human players will never use this spawn point to respawn in the game.</boolean>
-<boolean key="notsingle" name="Hidden For SP">when set to 1, entity will not spawn in Single Player mode (bot play mode).</boolean>
--------- SPAWNFLAGS --------
-<flag key="INITIAL" name="Initial Spawn Point" bit="0">makes the spawnpoint the initial place for the player to spawn at the beginning of the game.</flag>
-</point>
-
 <point name="info_player_deathmatch" color="0 1 0" box="-16 -16 -24 16 16 32">
 Normal player spawning location for OA levels.
 -------- KEYS --------
