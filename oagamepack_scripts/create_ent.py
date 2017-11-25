@@ -23,10 +23,10 @@
 import pandas as pd
 import sys
 import re
+import os.path
 
-def readCsvToDicts(filename,keyname):
+def readCsvToDictsAppend(result,filename,keyname):
     reader = pd.read_csv(filename)
-    result = {}
     for row in reader.itertuples():
         rowDict = row._asdict()
         key = rowDict[keyname]
@@ -34,6 +34,10 @@ def readCsvToDicts(filename,keyname):
             sys.exit("fatal error, the file: "+filename+" has double key: "+key)
         result[key] = rowDict
     return result
+
+def readCsvToDicts(filename,keyname):
+    result = {}
+    return readCsvToDictsAppend(result,filename,keyname)
 
 def fatal(errorMsg):
     print(errorMsg)
@@ -43,49 +47,79 @@ def fatal(errorMsg):
 print("<?xml version=\"1.0\"?>")
 
 entities = readCsvToDicts("entities.csv","item")
+if (os.path.isfile("entities_extra.csv")):
+    entities = readCsvToDictsAppend(entities, "entities_extra.csv", "item")
 keys = readCsvToDicts("keys.csv","name")
 key_texts = readCsvToDicts("key_text.csv","key")
 notes = readCsvToDicts("note.csv","name")
 note_texts = readCsvToDicts("note_text.csv", "key")
 # There are no spawnflags.csv at the moment. We only have suspended and it is part if the QUAKED line
+spawnflags = readCsvToDicts("spawnflags.csv","item")
 spawnflag_texts = readCsvToDicts("spawnflag_text.csv","key")
 
 
+def isTrue(some_value):
+    # True is represented by the string "true". Note that pandas uses NaN for blank strings
+    if (isinstance(some_value, str) and len(some_value)>0):
+        return True
+    return False
+
 def printKeys(item_name):
-    for item in key_texts:
+    for item in sorted(key_texts):
         if (item_name in keys.keys()):
             keyLine = keys[item_name]
             if (item in keyLine.keys()):
                 hasKey = keyLine[item]
                 #The hasKey == hasKey us used to check for NaN. Blank fields are NaNs in Pandas
                 if (hasKey and hasKey == hasKey):
+                    defaultText = ""
                     basename = item
                     basekey = key_texts[item]["basekey"]
-                    if (isinstance(basekey, str) and len(basekey)>0):
+                    if (isTrue(basekey)):
                         basename = basekey
                     name = basename
                     fullname = key_texts[item]["fullname"]
                     if (isinstance(fullname, str) and len(fullname)>0):
                         name = fullname
-                    print("<"+key_texts[item]["type"]+" key=\""+basename+"\" name=\""+name+"\">"+key_texts[item]["text"]+"</"+key_texts[item]["type"]+">")
+                    try:
+                        defaultTextActual = keyLine[item+"_default"]
+                        if key_texts[item]["type"] == "integer":
+                            defaultText = " Default: "+str(int(defaultTextActual))
+                        else:
+                            defaultText = " Default: "+str(defaultTextActual)
+                    except:
+                        defaultText = ""
+                    print("<"+key_texts[item]["type"]+" key=\""+basename+"\" name=\""+name+"\">"+key_texts[item]["text"]+defaultText+"</"+key_texts[item]["type"]+">")
                     
 def printNotes(item_name):
-    for item in note_texts:
+    for item in sorted(note_texts):
         if (item_name in notes.keys()):
             keyLine = notes[item_name]
             if (item in keyLine.keys()):
                 hasKey = keyLine[item]
-                if (hasKey):
+                if (hasKey and hasKey == hasKey):
                     print(note_texts[item]["text"])
                     
+def printNonSuspendedSpawnflags(item_name):
+    for item in sorted(spawnflag_texts):
+        if (item_name in spawnflags.keys() ):
+            keyLine = spawnflags[item_name]
+            if (item in keyLine.keys()):
+                hasKey = keyLine[item]
+                flagRow = spawnflag_texts[item]
+                if (hasKey and hasKey == hasKey):
+                    print("<flag key=\""+flagRow["key"]+"\" name=\""+flagRow["fullname"]+"\" bit=\""+str(flagRow["bit"])+"\">"+flagRow["text"]+"</flag>")
+                    
+                    
 def printSpawnflags(item_name):
-    if ("suspended" in entities[item_name]["quaked"]):
+    if (item == "SUSPENDED" and "suspended" in entities[item_name]["quaked"]):
         flagRow = spawnflag_texts["SUSPENDED"]
-        print("<flag key=\""+flagRow["key"]+"\" name=\""+flagRow["fullname"]+"\" bit=\""+str(flagRow["bit"])+"\">"+flagRow["text"]+"</flag>")
+        print("<flag key=\""+flagRow["key"]+"\" name=\""+flagRow["fullname"]+"\" bit=\""+str(flagRow["bit"])+"\">"+flagRow["text"]+"</flag>")    
+    printNonSuspendedSpawnflags(item_name)
             
 
 print("<classes>")
-for item in entities:
+for item in sorted(entities):
     row = entities[item]
     quaked = row["quaked"]
     model = ""
@@ -95,13 +129,20 @@ for item in entities:
         color = parans[0]
     except AttributeError:
         fatal("Failed it find color in: "+quaked)
+    box1 = False
     if (len(parans) > 1):
         box1 = parans[1]
     if (len(parans) > 2):
         box2 = parans[2]
     if isinstance(row["model"],str):
         model = row["model"]
-    print("  <point name=\"" + item + "\" color=\""+color+"\"", end ="")
+    #isPoint = True
+    #f (isTrue(keys[item]["is_group"])):
+    #    isPoint = False
+    xmlName = "point"
+    if not box1:
+        xmlName = "group"
+    print("  <"+xmlName+" name=\"" + item + "\" color=\""+color+"\"", end ="")
     if (box1 and box2):
         print(" box=\""+box1+" "+box2+"\"", end = "")
     print(" model=\""+model+"\">")
@@ -113,5 +154,5 @@ for item in entities:
     printSpawnflags(item)
     print("-------- NOTES --------")
     printNotes(item)
-    print("  </point>")
+    print("  </"+xmlName+">")
 print("</classes>")
