@@ -1,5 +1,5 @@
 item,quaked,description,model
-_decal,/*QUAKED _decal (0 1.0 0) (-8 -8 -8) (8 8 8),Compiler-only entity. Specifies a decal for projection.,
+_decal,/*QUAKED _decal (0 1.0 0) ?,Compiler-only entity. Specifies a decal for projection.,
 _skybox,/*QUAKED _skybox (0.77 0.88 1.0) (-4 -4 -4) (4 4 4),"Compiler-only entity. Specifies the origin of a skybox in a contained area of the map, far from the actual level.",
 ammo_belt,/*QUAKED ammo_belt (.3 .3 1) (-16 -16 -16) (16 16 16) suspended,Chaingun ammo.,models/powerups/ammo/chaingunam.md3
 ammo_bfg,/*QUAKED ammo_bfg (.3 .3 1) (-16 -16 -16) (16 16 16) suspended,BFG ammo.,models/powerups/ammo/bfgam.md3
@@ -13,18 +13,18 @@ ammo_rockets,/*QUAKED ammo_rockets (.3 .3 1) (-16 -16 -16) (16 16 16) suspended,
 ammo_shells,/*QUAKED ammo_shells (.3 .3 1) (-16 -16 -16) (16 16 16) suspended,Shotgun ammo.,models/powerups/ammo/shotgunam.md3
 ammo_slugs,/*QUAKED ammo_slugs (.3 .3 1) (-16 -16 -16) (16 16 16) suspended,Railgun ammo.,models/powerups/ammo/railgunam.md3
 domination_point,/*QUAKED domination_point (1 0 .5) (-16 -16 -16) (16 16 16),Domination Control Point.,
-func_bobbing,/*QUAKED func_bobbing (0 .5 .8) (-8 -8 -8) (8 8 8) X_AXIS Y_AXIS,Brush entity which bobs on the Z axis.,
-func_button,/*QUAKED func_button (0 .5 .8) (-8 -8 -8) (8 8 8),"Pushable button, usually used to trigger other entities or just open doors.",
-func_door,/*QUAKED func_door (0 .5 .8) (-8 -8 -8) (8 8 8) START_OPEN x CRUSHER,"Movable brush usually used as a door, hence the name.",
-func_group,/*QUAKED func_group (0 0 0) (-8 -8 -8) (8 8 8),Used to group brushes together just for editor convenience.  They are turned into normal brushes by the utilities.,
-func_pendulum,/*QUAKED func_pendulum (0 .5 .8) (-8 -8 -8) (8 8 8),A swinging pendulum. Pendulums always swing north / south on unrotated models.  Pendulum frequency is a physical constant based on the length of the beam and gravity.,
-func_plat,/*QUAKED func_plat (0 .5 .8) (-8 -8 -8) (8 8 8),Activable platforms. Plats are always drawn in the extended position so they will light correctly.,
-func_rotating,/*QUAKED func_rotating (0 .5 .8) (-8 -8 -8) (8 8 8) START_ON - X_AXIS Y_AXIS,"A rotating entity, used for decorations or moving platforms. The center of that brush will be
+func_bobbing,/*QUAKED func_bobbing (0 .5 .8) ? X_AXIS Y_AXIS,Brush entity which bobs on the Z axis.,
+func_button,/*QUAKED func_button (0 .5 .8) ?,"Pushable button, usually used to trigger other entities or just open doors.",
+func_door,/*QUAKED func_door (0 .5 .8) ? START_OPEN x CRUSHER,"Movable brush usually used as a door, hence the name.",
+func_group,/*QUAKED func_group (0 0 0) ?,Used to group brushes together just for editor convenience.  They are turned into normal brushes by the utilities.,
+func_pendulum,/*QUAKED func_pendulum (0 .5 .8) ?,A swinging pendulum. Pendulums always swing north / south on unrotated models.  Pendulum frequency is a physical constant based on the length of the beam and gravity.,
+func_plat,/*QUAKED func_plat (0 .5 .8) ?,Activable platforms. Plats are always drawn in the extended position so they will light correctly.,
+func_rotating,/*QUAKED func_rotating (0 .5 .8) ? START_ON - X_AXIS Y_AXIS,"A rotating entity, used for decorations or moving platforms. The center of that brush will be
 the point around which it is rotated. It will rotate around the Z axis by default.  You can
 check either the X_AXIS or Y_AXIS box to change that.",
-func_static,/*QUAKED func_static (0 .5 .8) (-8 -8 -8) (8 8 8),"A bmodel that just sits there, doing nothing.  Can be used for conditional walls and models.",
+func_static,/*QUAKED func_static (0 .5 .8) ?,"A bmodel that just sits there, doing nothing.  Can be used for conditional walls and models.",
 func_timer,/*QUAKED func_timer (0.3 0.1 0.6) (-8 -8 -8) (8 8 8) START_ON,Repeatedly fires its targets. Can be turned on or off by using another func or trigger.,
-func_train,/*QUAKED func_train (0 .5 .8) (-8 -8 -8) (8 8 8) START_ON TOGGLE BLOCK_STOPS,A train is a mover that moves between path_corner target points. The train spawns at the first target it is pointing at.,
+func_train,/*QUAKED func_train (0 .5 .8) ? START_ON TOGGLE BLOCK_STOPS,A train is a mover that moves between path_corner target points. The train spawns at the first target it is pointing at.,
 holdable_invulnerability,/*QUAKED holdable_invulnerability (.3 .3 1) (-16 -16 -16) (16 16 16) suspended,Invulnerability holdable.,models/powerups/holdable/invulnerability.md3
 holdable_kamikaze,/*QUAKED holdable_kamikaze (.3 .3 1) (-16 -16 -16) (16 16 16) suspended,Kamikaze holdable.,models/powerups/kamikazi.md3
 holdable_medkit,/*QUAKED holdable_medkit (.3 .3 1) (-16 -16 -16) (16 16 16) suspended,Personal Medkit holdable.,models/powerups/holdable/teleporter.md3
@@ -94,10 +94,10 @@ team_CTF_redspawn,/*QUAKED team_CTF_redspawn (1 0 0) (-16 -16 -24) (16 16 32),"P
 team_neutralobelisk,/*QUAKED team_neutralobelisk (0 0 1) (-16 -16 0) (16 16 88),Neutral Obelisk. Used as a key entity for Harvester games.,
 team_redobelisk,/*QUAKED team_redobelisk (1 0 0) (-16 -16 0) (16 16 8),Red Team Obelisk. Used as a key entity for Harvester and Overload games.,
 trigger_always,/*QUAKED trigger_always (.5 .5 .5) (-8 -8 -8) (8 8 8),This trigger will always fire.  It is activated by the world.,
-trigger_hurt,/*QUAKED trigger_hurt (.5 .5 .5) (-8 -8 -8) (8 8 8) START_OFF - SILENT NO_PROTECTION SLOW,Any entity that touches this will be hurt. It does dmg points of damage each server frame.,
-trigger_multiple,/*QUAKED trigger_multiple (.5 .5 .5) (-8 -8 -8) (8 8 8),Variable sized repeatable trigger.  Must be targeted at one or more entities.,
-trigger_push,/*QUAKED trigger_push (.5 .5 .5) (-8 -8 -8) (8 8 8),"Must point at a target_position, which will be the apex of the leap. This will be client side predicted, unlike target_push.",
-trigger_teleport,/*QUAKED trigger_teleport (.5 .5 .5) (-8 -8 -8) (8 8 8) SPECTATOR,"Allows client side prediction of teleportation events. Must point at a target_position, which will be the teleport destination.",
+trigger_hurt,/*QUAKED trigger_hurt (.5 .5 .5) ? START_OFF - SILENT NO_PROTECTION SLOW,Any entity that touches this will be hurt. It does dmg points of damage each server frame.,
+trigger_multiple,/*QUAKED trigger_multiple (.5 .5 .5) ?,Variable sized repeatable trigger.  Must be targeted at one or more entities.,
+trigger_push,/*QUAKED trigger_push (.5 .5 .5) ?,"Must point at a target_position, which will be the apex of the leap. This will be client side predicted, unlike target_push.",
+trigger_teleport,/*QUAKED trigger_teleport (.5 .5 .5) ? SPECTATOR,"Allows client side prediction of teleportation events. Must point at a target_position, which will be the teleport destination.",
 weapon_bfg,/*QUAKED weapon_bfg (.3 .3 1) (-16 -16 -16) (16 16 16) suspended,BFG.,models/weapons2/bfg/bfg.md3
 weapon_chaingun,/*QUAKED weapon_chaingun (.3 .3 1) (-16 -16 -16) (16 16 16) suspended,Chaingun.,models/flags/b_flag.md3
 weapon_gauntlet,/*QUAKED weapon_gauntlet (.3 .3 1) (-16 -16 -16) (16 16 16) suspended,Gauntlet.,models/weapons2/gauntlet/gauntlet.md3
