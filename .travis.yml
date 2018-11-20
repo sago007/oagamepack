@@ -1,9 +1,11 @@
 language: python
-python:
-  - "3.4"
+
+services:
+  - docker
+
 # command to install dependencies
-install:
-  - pip install pandas
+before_install:
+  - docker pull ubuntu:14.04
 # command to run tests
 script:
-  - cd generation-scripts/ && ./test_scripts.sh
+  - docker run -it --rm -v $(pwd):/opt ubuntu:14.04 "bash -c cd /opt/generation-scripts/ && ./test_scripts.sh"
