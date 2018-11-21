@@ -8,4 +8,4 @@ before_install:
   - docker pull ubuntu:14.04
 # command to run tests
 script:
-  - docker run -it --rm -v $(pwd):/opt ubuntu:14.04 "bash -c cd /opt/generation-scripts/ && ./test_scripts.sh"
+  - docker run -it --rm -v $(pwd):/opt ubuntu:14.04 bash -c "apt-get update && apt-get --no-install-recommends install -y python3-pandas python3-pkg-resources && cd /opt/generation-scripts/ && ./test_scripts.sh"
